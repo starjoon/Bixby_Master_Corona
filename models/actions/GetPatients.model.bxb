@@ -1,0 +1,31 @@
+action (GetPatients) {
+  type (Search)
+  description (환자 불러오기)
+  collect {
+    input (CheckProvince) {
+      type (CheckProvince)
+      min (Optional) max (One)
+    }
+    input (CheckCity) {
+      type (CheckCity)
+      min (Optional) max (One)
+    }
+    input (CheckPatients) {
+      type (CheckPatients)
+      min (Required) max (One)
+    }
+  }
+  output (RegionPatients) {
+    throws {
+      error (NoPatients) {
+        on-catch {
+          halt {
+            dialog {
+              template ("해당 지역에는 확진자가 없습니다.")
+            }
+          }
+        }
+      }
+    }
+  }
+}

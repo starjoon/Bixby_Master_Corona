@@ -1,0 +1,23 @@
+enum (CheckProvince) {
+  description (발화에서 인식하는 주요 행정 구역)
+  symbol (서울)
+  symbol (부산)
+  symbol (대구)
+  symbol (인천)
+  symbol (광주)
+  symbol (대전)
+  symbol (울산)
+  symbol (세종)
+  symbol (경기)
+  symbol (강원)
+  symbol (충북)
+  symbol (충남)
+  symbol (전북)
+  symbol (전남)
+  symbol (경북)
+  symbol (경남)
+  symbol (제주)
+  features {
+    transient
+  }
+}

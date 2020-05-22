@@ -1,0 +1,5 @@
+vocab (CheckPatients) {
+  "환자"
+  "확진자"
+  "확진 환자"
+}

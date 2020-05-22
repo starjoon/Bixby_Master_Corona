@@ -1,0 +1,4 @@
+train (t-dc5069ua1uvr31pyld2mc5no6) {
+  utterance ("[g:RegionPatients] (경기도)[v:CheckProvince:경기] (환자)[v:CheckPatients] 알려줘")
+  last-modified (1589398078619)
+}

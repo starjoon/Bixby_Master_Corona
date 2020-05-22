@@ -1,0 +1,151 @@
+result-view {
+  match {
+    Status (result)
+  }
+  message {
+    if (exists(result.cured)) {
+      template ("#{value(result.updatedDate)} #{value(result.region)} 현황입니다. 전날 대비 추가 확진자는 #{value(result.increment)}명입니다.")
+    }
+    else {
+      template ("#{value(result.updatedDate)} #{value(result.region)} 확진자는 #{value(result.confirm)}명입니다. 전날 대비 추가 확진자는 #{value(result.increment)}명입니다.")
+    }
+  }
+
+  render {
+    layout {
+      section {
+        content {
+          if (exists(result.cured)) {
+            hbox {
+              content {
+                vbox {
+                  halign (Center)
+                  valign (Middle)
+                  grow (1)
+                  content {
+                    single-line {
+                      text {
+                        value ("확진환자")
+                        style (Detail_L_Soft)
+                      }
+                    }
+                  }
+                }
+                vbox {
+                  halign (Center)
+                  valign (Middle)
+                  grow (1)
+                  content {
+                    single-line {
+                      text {
+                        value ("격리해제")
+                        style (Detail_L_Soft)
+                      }
+                    }
+                  }
+                }
+                vbox {
+                  halign (Center)
+                  valign (Middle)
+                  grow (1)
+                  content {
+                    single-line {
+                      text {
+                        value ("사망자")
+                        style (Detail_L_Soft)
+                      }
+                    }
+                  }
+                }
+                vbox {
+                  halign (Center)
+                  valign (Middle)
+                  grow (1)
+                  content {
+                    single-line {
+                      text {
+                        value ("치료 중")
+                        style (Detail_L_Soft)
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            divider
+            spacer
+            hbox {
+              content {
+                vbox {
+                  halign (Center)
+                  valign (Top)
+                  grow (1)
+                  content {
+                    single-line {
+                      text {
+                        value ("#{value(result.confirm)}")
+                        style (Title_S)
+                      }
+                    }
+                  }
+                }
+                vbox {
+                  halign (Center)
+                  valign (Top)
+                  grow (1)
+                  content {
+                    single-line {
+                      text {
+                        value ("#{value(result.cured)}")
+                        style (Title_S)
+                        color (Green)
+                      }
+                    }
+                  }
+                }
+                vbox {
+                  halign (Center)
+                  valign (Top)
+                  grow (1)
+                  content {
+                    single-line {
+                      text {
+                        value ("#{value(result.death)}")
+                        style (Title_S)
+                        color (Red)
+                      }
+                    }
+                  }
+                }
+                vbox {
+                  halign (Center)
+                  valign (Top)
+                  grow (1)
+                  content {
+                    single-line {
+                      text {
+                        value ("#{value(result.monitor)}")
+                        style (Title_S)
+                        color (Amber)
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          spacer
+          attribution-link {
+            label ("최신 통계 현황, 질병관리본부")
+            url ("#{value(result.reference)}")
+          }
+        }
+      }
+    }
+  }
+  conversation-drivers {
+    conversation-driver {
+      template (환자 알려줘)
+    }
+  }
+}

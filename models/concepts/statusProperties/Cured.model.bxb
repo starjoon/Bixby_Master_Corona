@@ -1,0 +1,3 @@
+integer (Cured) {
+  description (완치/격리해제 인원)
+}

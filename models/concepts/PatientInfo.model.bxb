@@ -1,0 +1,55 @@
+structure (PatientInfo) {
+  description (환자 Output)
+  property (age) {
+    type (Age)
+    min (Optional) max (One)
+  }
+  property (city) {
+    type (City)
+    min (Optional) max (One)
+  }
+  property (confirmDate) {
+    type (ConfirmDate)
+    min (Optional) max (One)
+  }
+  property (country) {
+    type (Country)
+    min (Optional) max (One)
+  }
+  property (gender) {
+    type (Gender)
+    min (Optional) max (One)
+  }
+  property (hospital) {
+    type (Hospital)
+    min (Optional) max (One)
+  }
+  property (patientID) {
+    type (PatientID)
+    min (Optional) max (One)
+  }
+  property (patientNo) {
+    type (PatientNo)
+    min (Optional) max (One)
+  }
+  property (province) {
+    type (Province)
+    min (Optional) max (One)
+  }
+  property (residence) {
+    type (Residence)
+    min (Optional) max (One)
+  }
+  property (status) {
+    type (PatientStatus)
+    min (Optional) max (One)
+  }
+  property (timestamp) {
+    type (Timestamp)
+    min (Optional) max (One)
+  }
+  property (updatedDate) {
+    type (UpdatedDate)
+    min (Optional) max (One)
+  }
+}

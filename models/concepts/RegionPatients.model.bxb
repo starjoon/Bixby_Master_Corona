@@ -1,0 +1,19 @@
+structure (RegionPatients) {
+  description (지역 정보 + 환자 Output)
+  property (confirm) {
+    type (Confirm)
+    min (Optional) max (One)
+  }
+  property (region) {
+    type (Region)
+    min (Optional) max (One)
+  }
+  property (updatedDate) {
+    type (UpdatedDate)
+    min (Optional) max (One)
+  }
+  property (patients) {
+    type (PatientInfo)
+    min (Optional) max (Many)
+  }
+}

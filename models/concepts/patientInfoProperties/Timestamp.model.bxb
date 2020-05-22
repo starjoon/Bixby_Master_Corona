@@ -1,0 +1,3 @@
+integer (Timestamp) {
+  description (확진일 Timestamp 단위)
+}

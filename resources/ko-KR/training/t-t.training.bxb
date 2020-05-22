@@ -1,0 +1,5 @@
+train (t-tc0eyfar4iguafchtyp4x75x2) {
+  utterance ("[g:Status] (현황)[v:CheckStatus] 알려줘")
+  plan (Y2BmkCjISaxML8ovzUvRS84vys9L1AsuSSwpLWaQxpRxTy2BSspiSjpnpCZnQ6WZGBiBmAFIMjKAABMEAwA=)
+  last-modified (1589391332075)
+}

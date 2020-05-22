@@ -1,0 +1,4 @@
+train (t-fhhad2752xpcilnd3xkfavysz) {
+  utterance ("[g:RegionPatients] (강원도)[v:CheckProvince:강원] (환자)[v:CheckPatients] 몇 명이야")
+  last-modified (1589484300103)
+}

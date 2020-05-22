@@ -1,0 +1,27 @@
+result-view {
+  match {
+    RegionPatients (result)
+  }
+
+  message {
+    template ("#{value(result.updatedDate)}, #{value(result.region)} 확진자는 총 #{value(result.confirm)}명으로, 현재 입원 중인 환자는 다음과 같습니다.")
+  }
+
+  render {
+    list-of (result.patients) {
+      has-details (true)
+      where-each (patient) {
+        layout-macro (patient-list) {
+          param (patients) {
+            expression (patient)
+          }
+        }
+      }
+    }
+  }
+  conversation-drivers {
+    conversation-driver {
+      template (현황 알려줘)
+    }
+  }
+}

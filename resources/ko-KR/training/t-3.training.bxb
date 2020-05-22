@@ -1,0 +1,4 @@
+train (t-3pohfewfngdy062g27k2ejdey) {
+  utterance ("[g:RegionPatients] (인천)[v:CheckProvince:인천] (확진자)[v:CheckPatients] 알려줄래")
+  last-modified (1589392031610)
+}

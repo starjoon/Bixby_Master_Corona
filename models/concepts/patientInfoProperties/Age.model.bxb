@@ -1,0 +1,3 @@
+integer (Age) {
+  description (환자 나이)
+}

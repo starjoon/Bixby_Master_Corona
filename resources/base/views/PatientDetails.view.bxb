@@ -1,0 +1,180 @@
+result-view {
+  match {
+    PatientInfo (result)
+  }
+
+  render {
+    layout {
+      section {
+        content {
+          title-area {
+            halign (Center)
+            slot1 {
+              single-line {
+                text {
+                  value ("#{value(result.city)} #{value(result.patientNo)}번째 확진자")
+                  style (Title_L)
+                }
+              }
+            }
+            slot2 {
+              single-line {
+                text {
+                  value ("#{value(result.confirmDate)} 확진")
+                  style (Title_M)
+                  color (Amber)
+                }
+              }
+            }
+          }
+          spacer
+          hbox {
+            content {
+              vbox {
+                grow (2)
+                halign (Center)
+                valign (Middle)
+                content {
+                  single-line {
+                    text {
+                      value ("국적")
+                      style (Detail_L_Soft)
+                    }
+                  }
+                }
+              }
+              vbox {
+                grow (2)
+                halign (Center)
+                valign (Middle)
+                content {
+                  single-line {
+                    text {
+                      value ("성별")
+                      style (Detail_L_Soft)
+                    }
+                  }
+                }
+              }
+              vbox {
+                grow (2)
+                halign (Center)
+                valign (Middle)
+                content {
+                  single-line {
+                    text {
+                      value ("나이")
+                      style (Detail_L_Soft)
+                    }
+                  }
+                }
+              }
+              vbox {
+                grow (5)
+                halign (Center)
+                valign (Middle)
+                content {
+                  single-line {
+                    text {
+                      value ("입원 기관")
+                      style (Detail_L_Soft)
+                    }
+                  }
+                }
+              }
+              vbox {
+                grow (3)
+                halign (Center)
+                valign (Middle)
+                content {
+                  single-line {
+                    text {
+                      value ("거주지")
+                      style (Detail_L_Soft)
+                    }
+                  }
+                }
+              }
+            }
+          }
+          divider
+          spacer
+          hbox {
+            content {
+              vbox {
+                grow (2)
+                halign (Center)
+                valign (Middle)
+                content {
+                  single-line {
+                    text {
+                      value ("#{value(result.country)}")
+                      style (Detail_L)
+                    }
+                  }
+                }
+              }
+              vbox {
+                grow (2)
+                halign (Center)
+                valign (Middle)
+                content {
+                  single-line {
+                    text {
+                      value ("#{value(result.gender)}")
+                      style (Detail_L)
+                    }
+                  }
+                }
+              }
+              vbox {
+                grow (2)
+                halign (Center)
+                valign (Middle)
+                content {
+                  single-line {
+                    text {
+                      value ("#{value(result.age)}세")
+                      style (Detail_L)
+                    }
+                  }
+                }
+              }
+              vbox {
+                grow (5)
+                halign (Center)
+                valign (Middle)
+                content {
+                  single-line {
+                    text {
+                      value ("#{value(result.hospital)}")
+                      style (Detail_L)
+                    }
+                  }
+                }
+              }
+              vbox {
+                grow (3)
+                halign (Center)
+                valign (Middle)
+                content {
+                  single-line {
+                    text {
+                      value ("#{value(result.residence)}")
+                      style (Detail_L)
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  conversation-drivers {
+    conversation-driver {
+      template (현황 알려줘)
+    }
+  }
+}

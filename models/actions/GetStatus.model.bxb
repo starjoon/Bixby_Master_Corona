@@ -1,0 +1,31 @@
+action (GetStatus) {
+  type (Search)
+  description (현황 불러오기)
+  collect {
+    input (CheckProvince) {
+      type (CheckProvince)
+      min (Optional) max (One)
+    }
+    input (CheckCity) {
+      type (CheckCity)
+      min (Optional) max (One)
+    }
+    input (CheckStatus) {
+      type (CheckStatus)
+      min (Required) max (One)
+    }
+  }
+  output (Status) {
+    throws {
+      error (NoPatients) {
+        on-catch {
+          halt {
+            dialog {
+              template ("해당 지역에는 확진자가 없습니다.")
+            }
+          }
+        }
+      }
+    }
+  }
+}

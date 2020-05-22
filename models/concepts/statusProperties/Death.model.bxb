@@ -1,0 +1,3 @@
+integer (Death) {
+  description (사망자 인원)
+}

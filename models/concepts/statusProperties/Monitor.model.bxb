@@ -1,0 +1,3 @@
+integer (Monitor) {
+  description (치료 중/입원 중 인원)
+}

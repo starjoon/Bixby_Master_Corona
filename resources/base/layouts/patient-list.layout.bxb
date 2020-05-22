@@ -1,0 +1,127 @@
+layout-macro-def (patient-list) {
+  params {
+    param (patients) {
+      type (PatientInfo)
+      min (Required)
+      max (One)
+    }
+  }
+
+  content {
+    compound-card {
+      content {
+        hbox {
+          content {
+            vbox {
+              grow (3)
+              halign (Center)
+              valign (Middle)
+              content {
+                single-line {
+                  text {
+                    value ("#{value(patients.city)} - #{value(patients.patientNo)}")
+                    style (Detail_L_Soft)
+                  }
+                }
+              }
+            }
+            vbox {
+              grow (4)
+              halign (Center)
+              valign (Middle)
+              content {
+                single-line {
+                  text {
+                    value ("확진일자")
+                    style (Detail_L_Soft)
+                  }
+                }
+              }
+            }
+            vbox {
+              grow (2)
+              halign (Center)
+              valign (Middle)
+              content {
+                single-line {
+                  text {
+                    value ("거주지")
+                    style (Detail_L_Soft)
+                  }
+                }
+              }
+            }
+          }
+        }
+        divider
+        hbox {
+          content {
+            vbox {
+              grow (3)
+              halign (Center)
+              valign (Middle)
+              content {
+                single-line {
+                  text {
+                    value ("#{value(patients.gender)}, #{value(patients.age)}세")
+                    style (Title_XS)
+                  }
+                }
+              }
+            }
+            vbox {
+              grow (4)
+              halign (Center)
+              valign (Middle)
+              content {
+                single-line {
+                  text {
+                    value ("#{value(patients.confirmDate)}")
+                  }
+                }
+                if (patients.status == '퇴원') {
+                  single-line {
+                    text {
+                      value ("퇴원")
+                      style (Detail_L)
+                      color (Green)
+                    }
+                  }
+                }
+                else-if (patients.status == '사���') {
+                  single-line {
+                    text {
+                      value ("사망")
+                      style (Detail_L)
+                      color (Red)
+                    }
+                  }
+                }
+                else {
+                  single-line {
+                    text {
+                      value ("(#{value(patients.hospital)})")
+                      style (Detail_L)
+                    }
+                  }
+                }
+              }
+            }
+            vbox {
+              grow (2)
+              halign (Center)
+              valign (Middle)
+              content {
+                single-line {
+                  text {
+                    value ("#{value(patients.residence)}")
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

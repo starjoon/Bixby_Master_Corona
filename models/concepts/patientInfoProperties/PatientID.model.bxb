@@ -1,0 +1,3 @@
+text (PatientID) {
+  description (환자 식별 ID)
+}

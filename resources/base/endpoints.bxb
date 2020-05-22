@@ -1,0 +1,19 @@
+endpoints {
+  action-endpoints {
+    // Uncomment the lines below and enter the information for actions, inputs, and the appropriate local or remote endpoints
+    action-endpoint (GetStatus) {
+      accepted-inputs (CheckProvince, CheckCity, CheckStatus)
+      local-endpoint (getStatus.js)
+    }
+    action-endpoint (GetPatients) {
+      accepted-inputs (CheckProvince, CheckCity, CheckPatients)
+      local-endpoint (getPatients.js)
+    }
+    // action-endpoint (__ACTION_NAME__) {
+    //   accepted-inputs (__LIST_OF_ACTION_INPUTS__)
+    //   remote-endpoint (__ENDPOINT_URL__) {
+    //     method (__HTTP_METHOD_USED__)
+    //   }
+    // }
+  }
+}

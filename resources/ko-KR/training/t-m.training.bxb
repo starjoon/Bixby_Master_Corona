@@ -1,0 +1,4 @@
+train (t-m521n5aji0ktud5ejcvle2d0s) {
+  utterance ("[g:RegionPatients] (서울)[v:CheckProvince:서울] (확진자)[v:CheckPatients] 궁금해")
+  last-modified (1589391981356)
+}

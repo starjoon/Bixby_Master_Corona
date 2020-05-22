@@ -1,0 +1,3 @@
+name (PatientStatus) {
+  description (환자 입/퇴원 여부)
+}

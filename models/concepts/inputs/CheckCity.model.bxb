@@ -1,0 +1,6 @@
+name (CheckCity) {
+  description (발화에서 인식하는 도시 Value)
+  features {
+    transient
+  }
+}

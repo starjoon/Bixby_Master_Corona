@@ -1,0 +1,35 @@
+structure (Status) {
+  description (현황 Output)
+  property (confirm) {
+    type (Confirm)
+    min (Optional) max (One)
+  }
+  property (cured) {
+    type (Cured)
+    min (Optional) max (One)
+  }
+  property (death) {
+    type (Death)
+    min (Optional) max (One)
+  }
+  property (increment) {
+    type (Increment)
+    min (Optional) max (One)
+  }
+  property (monitor) {
+    type (Monitor)
+    min (Optional) max (One)
+  }
+  property (reference) {
+    type (Reference)
+    min (Optional) max (One)
+  }
+  property (region) {
+    type (Region)
+    min (Optional) max (One)
+  }
+  property (updatedDate) {
+    type (UpdatedDate)
+    min (Optional) max (One)
+  }
+}

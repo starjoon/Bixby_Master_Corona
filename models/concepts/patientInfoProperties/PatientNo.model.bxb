@@ -1,0 +1,3 @@
+integer (PatientNo) {
+  description (환자 번호 - 도시 기준)
+}
