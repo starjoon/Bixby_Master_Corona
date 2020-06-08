@@ -13,11 +13,11 @@
 ## Bixby | 개발자 Insight - 1. 소개
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=iNFlq-O6aRM
 " target="_blank"><img src="https://i.imgur.com/GHeg0fI.jpg" 
-alt="개발자 INSIGHT EP.1 - 코로나 알림" width="100%" height="100%" border="10" /></a>
+alt="개발자 INSIGHT EP.1 - 코로나 알림" width="100%" height="100%" style="border: 5px solid black" /></a>
 
 ***
 
 ## Bixby | 개발자 Insight - 2. 모델링
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=S2Jbey_a7tw
 " target="_blank"><img src="https://i.imgur.com/TgbamG2.jpg" 
-alt="개발자 INSIGHT EP.1 - 코로나 알림" width="100%" height="100%" border="10" /></a>
+alt="개발자 INSIGHT EP.1 - 코로나 알림" width="100%" height="100%" style="border: 5px solid black" /></a>
