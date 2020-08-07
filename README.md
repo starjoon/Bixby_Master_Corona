@@ -269,6 +269,20 @@ return response.parsed.sort(compare)
 
 ---
 
+## Bixby | 개발자 Insight - 4. 빅스비 뷰
+
+<a href="https://www.youtube.com/watch?v=fKzjJXbk-Jk" target="_blank"><img src="https://i.imgur.com/wLyE7rW.png" 
+alt="개발자 INSIGHT EP.4 - 코로나 알림" width="100%" height="100%" style="border: 5px solid black" /></a>
+
+---
+
+## Bixby | 개발자 Insight - 5. 학습
+
+<a href="https://www.youtube.com/watch?v=AxXGTjJNFIM" target="_blank"><img src="https://i.imgur.com/XlQ3faC.png" 
+alt="개발자 INSIGHT EP.5 - 코로나 알림" width="100%" height="100%" style="border: 5px solid black" /></a>
+
+---
+
 ## Additional Resources
 
 ### Bixby에 대한 모든 것
