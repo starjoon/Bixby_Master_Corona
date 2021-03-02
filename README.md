@@ -2,42 +2,42 @@
   <img src="https://camo.githubusercontent.com/745c6ad37a844ec4f3d533e299ab5756107f99e8/68747470733a2f2f6269786279646576656c6f706572732e636f6d2f6465762f646f63732d6173736574732f7265736f75726365732f6465762d67756964652f62697862795f6c6f676f5f6769746875622d31313232313934303037303237383032383336392e706e67">
 </p>
 
-# 빅스비 개발자 INSIGHT [코로나 알림]
+# Bixby Developer Insight [COVID-19 App/Capsule]
 
-안녕하세요, 빅스비 마스터 최준입니다.
+Hi, I'm Joon Choi, the developer of COVID-19 Bixby Capsule.
 
-영상에서 개발 과정을 보여드린 캡슐 그대로 제공되니 참고하세요~
+This is an English translation of a document detailing the project I worked in partnership with Samsung Bixby; this repository entails the full-stack development process of the COVID-19 Bixby Capsule.
 
 ---
 
-## Bixby | 개발자 Insight - 1. 소개
+## Bixby | Developer Insight - 1. Introduction
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=iNFlq-O6aRM
 " target="_blank"><img src="https://i.imgur.com/GHeg0fI.jpg" 
 alt="개발자 INSIGHT EP.1 - 코로나 알림" width="100%" height="100%" style="border: 5px solid black" /></a>
 
-2월 초 빅스비 마켓플레이스에 출시된 캡슐로서, 국내 코로나 현황, 주변 접촉 장소, 근처 마스크 구매처 등 다양한 정보를 제공하고있습니다. 코로나 공공데이터가 따로 존재하지 않아, [질병관리본부](http://ncov.mohw.go.kr 'COVID-19 질병관리본부 웹사이트') 웹사이트에서 자료를 스크래핑하는 형식으로 백엔드를 구축 해보겠습니다.
+Published in Feb 2020 on Bixby Marketplace, the COVID-19 Bixby Capsule provides latest news and updates on COVID-19 status, nearby hotspots and mask sellers to Samsung Bixby users. As there are no public COVID-19 APIs currently available, most of the information originate from South Korea's [CDC](http://ncov.mohw.go.kr 'COVID-19 CDC Website') Website.
 
-### 해당 캡슐은 교육용으로, 개발 과정은 다음과 같습니다:
+### The following capsule serves educational purposes and the devlopment process is as follows:
 
-**Modeling (모델링)** &rarr; **Coding (코딩)** &rarr; **Bixby Views (UI/UX)** &rarr; **Training (학습)**
+**Modeling** &rarr; **Coding** &rarr; **Bixby Views (UI/UX)** &rarr; **Training**
 
 ---
 
-## Bixby | 개발자 Insight - 2. 모델링
+## Bixby | Developer Insight - 2. Modeling
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=S2Jbey_a7tw
 " target="_blank"><img src="https://i.imgur.com/TgbamG2.jpg" 
 alt="개발자 INSIGHT EP.2 - 코로나 알림" width="100%" height="100%" style="border: 5px solid black" /></a>
 
-### 교육 차원에서 발화 기능 / Action 은 총 2가지로 간주됩니다:
+### We will only cover 2 Utterances/Action in this document for educational purposes:
 
-#### "현황 알려줘" &rarr; GetStatus.model.bxb
+#### "Get COVID-19 Status" &rarr; GetStatus.model.bxb
 
 ```js
 action (GetStatus) {
   type (Search)
-  description (현황 불러오기)
+  description (Get COVID-19 Status)
   collect {
     input (CheckProvince) {
       type (CheckProvince)
@@ -56,12 +56,12 @@ action (GetStatus) {
 }
 ```
 
-#### "확진자 알려줘" &rarr; GetPatients.model.bxb
+#### "Retrieve COVID-19 Patients" &rarr; GetPatients.model.bxb
 
 ```js
 action (GetPatients) {
   type (Search)
-  description (환자 불러오기)
+  description (Retrieve Patients)
   collect {
     input (CheckProvince) {
       type (CheckProvince)
@@ -80,25 +80,25 @@ action (GetPatients) {
 }
 ```
 
-### Action 을 수립할 때는 발화 자체를 그대로 반영한다고 생각하시면 됩니다.
+### You can think of Actions as the text and speech (user utterance) that interact with the users.
 
 ```js
-//경기도 수원 현황 알려줘
+//Get me status on Suwon, Gyeonggi Province
 action (GetStatus) {
   type (Search)
   description (현황 불러오기)
   collect {
-    //경기도
+    //Gyeonggi
     input (CheckProvince) {
       type (CheckProvince)
       min (Optional) max (One)
     }
-    //수원
+    //Suwon
     input (CheckCity) {
       type (CheckCity)
       min (Optional) max (One)
     }
-    //현황
+    //Status
     input (CheckStatus) {
       type (CheckStatus)
       min (Required) max (One)
@@ -110,19 +110,19 @@ action (GetStatus) {
 
 ---
 
-## Bixby | 개발자 Insight - 3. 코딩
+## Bixby | Developer Insight - 3. Coding
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=QJDK5gBSwu4
 " target="_blank"><img src="https://i.imgur.com/84HLKU5.jpg" 
 alt="개발자 INSIGHT EP.3 - 코로나 알림" width="100%" height="100%" style="border: 5px solid black" /></a>
 
-별도 코로나 공공데이터가 존재하지 않기 떄문에 백엔드를 먼저 구축해야 합니다. 저희는 AWS에서 제공하는 서비스를 활용해 필요한 DB와 API를 생성해보겠습니다. 자세한 내용은 [Bixby_Master_Corona_AWS](https://github.com/starjoon/Bixby_Master_Corona_AWS 'AWS 기반 백엔드 구축') github 문서를 참고하세요!
+As there are no public APIs available, we must create our own custom API (back-end). In this tutorial, we will be using AWS to provide us with the tools for Database and REST API. To learn more about AWS use, please refer to the [Bixby_Master_Corona_AWS](https://github.com/starjoon/Bixby_Master_Corona_AWS 'Back-end development using AWS') repository!
 
-백엔드를 구축한 후, Bixby Developer Studio에서 추가 JavaScript 코딩을 하여 유저 발화 시, 데이터를 불러올 수 있도록 기존에 생성한 Action과 연동합니다.
+Once we've set up our back-end, we can finish our additional coding (JavaScript) on Bixby Developer Studio, and link the API calls to the corresponding Actions/User Utterances.
 
 #### getStatus.js (GetStatus.model.bxb)
 
-Bixby Developer Studio 내에서 제공하는 JavaScript 환경은 ECMAScript5 (ES5) 언어 기반으로 몇 가지 기능들이 제한되어 있습니다. 우선 사용할 모듈을 불러오겠습니다.
+Bixby Developer Studio provides JavaScript ECMAScript5 (ES5) environment, so there are some limitations as to modules we can use.
 
 ```js
 var console = require('console');
@@ -130,12 +130,12 @@ var http = require('http');
 var fail = require('fail');
 ```
 
-JavaScript 파일에 구성은 기존에 생성한 Action 모델과 유사하다고 생각하시면 됩니다.
+JavaScript files should resemble the Action files we constructed earlier in terms of functionality.
 
 ```js
 action (GetStatus) {
   type (Search)
-  description (현황 불러오기)
+  description (Get Status)
   collect {
     input (CheckProvince) {
       type (CheckProvince)
@@ -160,30 +160,30 @@ module.exports.function = function getStatus(
   CheckCity,
   CheckStatus
 ) {
-  // API 요청 및 데이터 처리
+  // API request and process data
   return Status;
 };
 ```
 
-우선, 유저 발화에서 API 요청에 사용될 Query 값을 추출하겠습니다. 발화에 포함될 수 있는 요청값 조합을 모두 고려해야 합니다.
+First, we will extract query variables or "keywords" to use in our API request from user utterances. Here, we have to consider all combinations that could result from different utterances.
 
 ```js
-//Query 값 설정
+//Set Query variables
 var searchRegion;
 if (CheckCity != null) {
   searchRegion = CheckCity;
 } else if (CheckProvince != null) {
   searchRegion = CheckProvince;
 } else {
-  searchRegion = '국내';
+  searchRegion = 'SouthKorea';
 }
 ```
 
-API 요청은 `http` 모듈을 활용해서 작용하겠습니다. 해당 모듈의 `getUrl()` Method는 `URL`과 `Options` 패러미터가 요구되어 먼저 설정해보겠습니다.
+API calls will be made using the `http` module. This module contains `getUrl()` method with `URL` and `Options` required parameters.
 
 ```js
-//API 요청 설정
-var URL = 'Status API URL 입력';
+//Set API call parameters
+var URL = 'Enter API URL';
 var Options = {
   format: 'json',
   returnHeaders: true,
@@ -192,31 +192,31 @@ var Options = {
   },
 };
 
-//API 요청
+//API request
 var response = http.getUrl(URL, Options);
 ```
 
-API 요청 시, 에러 코드를 대비해 `fail` 모듈을 활용하여 에러 핸들링도 추가합니다.
+We will use the `fail` module for error handling in case of an error during our API request.
 
 ```js
-//해당 지역에 확진자 없음 (에러 코드 400)
+//No patient found in said region (Error Code 400)
 if (response.status == 400) {
-  throw fail.checkedError('해당 지역에 확진자 없음', 'NoPatients', null);
+  throw fail.checkedError('No patient found', 'NoPatients', null);
 }
 ```
 
-빅스비 캡슐에서 이러한 에러가 발생할 시, 프로세스를 중단하고 다시 기존 Action 으로 돌아가게끔 설계가 되어있습니다. 여기서 `fail.checkedError()` 에 해당되는 2번째 패러미터 `'NoPatients'` 는 저희가 선정한 Error ID 값으로, Action 모델에서도 연동해야 합니다.
+We have designed our capsule, so that in case such error occurs, all processes will come to a halt and revert back to the original Action. Here, the second parameter of `fail.checkedError()` which we defined as `'NoPatients'` is the assigned Error ID, and we must indicate this ID in our Action model as well.
 
 ```js
 action (GetStatus) {
-  // Input 부분 생략
+  // Same input as before
   output (Status) {
     throws {
       error (NoPatients) {
         on-catch {
           halt {
             dialog {
-              template ("해당 지역에는 확진자가 없습니다.")
+              template ("There are no patients in this area.")
             }
           }
         }
@@ -226,13 +226,13 @@ action (GetStatus) {
 }
 ```
 
-다시 JavaScript 파일로 돌아가 API 요청 성공 시, 출력 값을 Return 합니다.
+Now, we can go back to our JavaScript file and simply return our values if the API request is successful.
 
 ```js
 return response.parsed;
 ```
 
-하지만, 이대로 유저 발화시, API 요청은 이루어지지 않습니다. 마지막으로 해당 JavaScript 파일과 Action 모델을 endpoints.bxb 파일에서 연동시켜 주어야 합니다.
+However, the API request still won't work in the current state when a user asks a question. We have to link the JavaScript file to the Action model by creating endpoints to connect the two for the final step.
 
 ```js
 endpoints {
@@ -245,11 +245,11 @@ endpoints {
 }
 ```
 
-API 요청에 대한 상세한 설명과 부가 기능들은 [Bixby Developers Docs](https://bixbydevelopers.com/dev/docs/dev-guide/developers/actions.js-actions 'Calling APIs in Actions') 를 참고해주시기 바랍니다.
+To find out more about API request and additional features available on Bixby Developer Studio, please refer to [Bixby Developers Docs](https://bixbydevelopers.com/dev/docs/dev-guide/developers/actions.js-actions 'Calling APIs in Actions').
 
 #### getPatients.js (GetPatients.model.bxb)
 
-확진자를 불러오는 Action 모델도 동일하게 JavaScript 파일에 반영하면 됩니다. 한 가지 다른점은, API 요청을 통해 여러 데이터를 불러와, Timestamp 기준으로 정렬하기 위해 `compare()` function을 생성하여 적용합니다.
+The same thing applies to the Action model for retrieving patients. The only difference would be the addition of the `compare()` function to compare timestamps for displaying patient information (latest to oldest).
 
 ```js
 function compare(a, b) {
@@ -269,14 +269,14 @@ return response.parsed.sort(compare)
 
 ---
 
-## Bixby | 개발자 Insight - 4. 빅스비 뷰
+## Bixby | Developer Insight - 4. Bixby View
 
 <a href="https://www.youtube.com/watch?v=fKzjJXbk-Jk" target="_blank"><img src="https://i.imgur.com/wLyE7rW.png" 
 alt="개발자 INSIGHT EP.4 - 코로나 알림" width="100%" height="100%" style="border: 5px solid black" /></a>
 
 ---
 
-## Bixby | 개발자 Insight - 5. 학습
+## Bixby | Developer Insight - 5. Training
 
 <a href="https://www.youtube.com/watch?v=AxXGTjJNFIM" target="_blank"><img src="https://i.imgur.com/XlQ3faC.png" 
 alt="개발자 INSIGHT EP.5 - 코로나 알림" width="100%" height="100%" style="border: 5px solid black" /></a>
@@ -285,26 +285,26 @@ alt="개발자 INSIGHT EP.5 - 코로나 알림" width="100%" height="100%" style
 
 ## Additional Resources
 
-### Bixby에 대한 모든 것
+### Everything there is to Bixby
 
-- [Bixby Developer Center](http://bixbydevelopers.com) - Bixby 캡슐을 시작하기 위한 모든 것이 있습니다.
-- [Bixby Developer Portal](https://bixby.developer.samsung.com/) - Bixby 최신 소식과 이벤트 정보들을 확인하실 수 있습니다.
+- [Bixby Developer Center](http://bixbydevelopers.com) - Find out everything you need to get started on your Bixby capsule.
+- [Bixby Developer Portal](https://bixby.developer.samsung.com/) - Get the latest news and updates on Samsung Bixby.
 
 ### Guides & Best Practices
 
-- [Quick Start Guide](https://bixbydevelopers.com/dev/docs/get-started/quick-start) - Bixby의 첫 캡슐을 만들어보세요.
-- [Design Guides](https://bixbydevelopers.com/dev/docs/dev-guide/design-guides) - Bixby 캡슐을 디자인하기 위한 Best practices들을 배워보세요.
-- [Developer Guides](https://bixbydevelopers.com/dev/docs/dev-guide/developers) - Bixby 캡슐을 만들기 위하여 필요한 A-Z를 배울 수 있습니다.
-- [SW Expert Academy](https://swexpertacademy.com/main/learn/course/subjectList.do?courseId=BIXBY_CAPSULE) - Bixby 캡슐 개발을 위한 강의들을 보실 수 있습니다.
+- [Quick Start Guide](https://bixbydevelopers.com/dev/docs/get-started/quick-start) - Create your very first Bixby capsule.
+- [Design Guides](https://bixbydevelopers.com/dev/docs/dev-guide/design-guides) - Learn the best practices for designing your Bixby capsule.
+- [Developer Guides](https://bixbydevelopers.com/dev/docs/dev-guide/developers) - Everything you need to know for developing your Bixby capsule.
+- [SW Expert Academy](https://swexpertacademy.com/main/learn/course/subjectList.do?courseId=BIXBY_CAPSULE) - Watch tutorial videos on how to create your own Bixby capsule.
 
 ### Video Guides
 
-- [Samsung Developer Youtube](https://www.youtube.com/user/SMInnov8) - Bixby 개발과 관련된 영상들을 확인하실 수 있습니다.
-- [Bixby Developer Day Korea 2019](https://www.youtube.com/watch?v=Ty1ahLX7FlM&list=PL7PfK8Mp1rLE89RvwBh2IdCD3h6uAvgGm) - Bixby Developer Day Korea 2019에서 진행되었던 세션들을 만나보실 수 있습니다.
-- [Bixby Developer Day Korea 2018](https://www.youtube.com/playlist?list=PL7PfK8Mp1rLH0vLvT0yv5VXh_3x2bCUHl) - Bixby Developer Day Korea 2018에서 진행되었던 세션들을 만나보실 수 있습니다.
+- [Samsung Developer Youtube](https://www.youtube.com/user/SMInnov8) - Watch videos on Bixby capsule development.
+- [Bixby Developer Day Korea 2019](https://www.youtube.com/watch?v=Ty1ahLX7FlM&list=PL7PfK8Mp1rLE89RvwBh2IdCD3h6uAvgGm) - Watch recorded sessions held at Bixby Developer Day Korea 2019.
+- [Bixby Developer Day Korea 2018](https://www.youtube.com/playlist?list=PL7PfK8Mp1rLH0vLvT0yv5VXh_3x2bCUHl) - Watch recorded sessions held at Bixby Developer Day Korea 2018.
 
-### 도움이 필요하신가요?
+### Need some help?
 
-- Bixby 커뮤니티에 참여하세요! [Bixby Developers Korea Slack](https://join.slack.com/t/bixbydeveloperskorea/shared_invite/enQtNTY2Mjc1NjUzNjA1LTYzOWYwZWE4MjExNTg4ZWUyNDg4OWViNDRiOWUyMjg0Yzg5NWI5N2NlNGU4Nzg4ZThiZGI0ZGEzZGY1OGE1MjI)
-- 기능을 추가하고 싶으신가요? [Support Community](https://support.bixbydevelopers.com/hc/en-us/community/topics/360000183273-Feature-Requests)에 기능을 건의하여 주세요. 동일한 내용을 다른 분들이 이미 올렸다면, Vote 기능을 통해 추천을 해 주세요.
-- 기술적인 지원이 필요하신가요? support@bixbydevelopers.com으로 이메일을 통하여 질문하여 주시거나 또는 [Stack Overflow](https://stackoverflow.com/questions/tagged/bixby)에 “bixby” 태그와 함께 질문하여 주세요.
+- Join the Bixby Developer Community! [Bixby Developers Korea Slack](https://join.slack.com/t/bixbydeveloperskorea/shared_invite/enQtNTY2Mjc1NjUzNjA1LTYzOWYwZWE4MjExNTg4ZWUyNDg4OWViNDRiOWUyMjg0Yzg5NWI5N2NlNGU4Nzg4ZThiZGI0ZGEzZGY1OGE1MjI)
+- Is there a feature you would like to add? Contact [Support Community](https://support.bixbydevelopers.com/hc/en-us/community/topics/360000183273-Feature-Requests) and let us know what features you would like to see on Bixby. If you already see a similar feature posted, make sure to like the post for recognition!
+- Need technical assistance? Contact us at support@bixbydevelopers.com or post your question on [Stack Overflow](https://stackoverflow.com/questions/tagged/bixby) with the tag **bixby**.
